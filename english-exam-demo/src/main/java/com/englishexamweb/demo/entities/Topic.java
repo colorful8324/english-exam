@@ -21,11 +21,11 @@ public class Topic {
     private Integer descr;
     @OneToMany
     @JoinColumn(name = "tp_id")
-    private List<Question> questions;
+    private List<Exam> exams;
 
-    public Topic(String name, Integer descr, List<Question> questions) {
+    public Topic(String name, Integer descr, List<Exam> exams) {
         this.name = name;
         this.descr = descr;
-        this.questions = questions;
+        this.exams = exams;
     }
 }

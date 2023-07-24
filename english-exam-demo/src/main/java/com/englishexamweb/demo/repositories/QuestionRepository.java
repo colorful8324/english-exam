@@ -7,4 +7,6 @@ import java.util.*;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
     List<Question> findByTopicId(Integer topicId);
+    @Query(value = "SELECT * FROM questions q Where q.tp_id=:topicId ORDER BY rand() LIMIT :questionNo", nativeQuery = true)
+    List<Question> findRandomQuestionsByTopicId(Integer topicId, Integer questionNo);
 }

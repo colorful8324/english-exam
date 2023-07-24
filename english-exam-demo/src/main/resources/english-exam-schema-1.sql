@@ -95,6 +95,20 @@ create table QUESTIONS
 )
 ;
 
+drop table if exists `EXAMS_QUESTIONS`;
+create table EXAMS_QUESTIONS
+(
+    EQ_ID      INT AUTO_INCREMENT not null,
+	primary key (EQ_ID),
+    EX_ID      INT                                                            not null,
+	constraint `EXAMS_QUESTIONS_EXAMS_EX_ID_fk`
+		foreign key `EX_ID-fk` (EX_ID) references EXAMS (EX_ID),
+    QU_ID      INT                                                            not null,
+	constraint `EXAMS_QUESTIONS_QUESTIONS_TP_ID_fk`
+		foreign key `QU_ID-fk` (QU_ID) references QUESTIONS (QU_ID)
+)
+;
+
 drop table if exists `EXAM_TOPIC`;
 create table EXAM_TOPIC
 (
@@ -124,14 +138,14 @@ INSERT INTO USERS(us_username, us_password, us_fullname, us_address, us_mobile_n
 values ('user1', '$2a$10$Zx0CwehPR9vMnjyLMHuALu3PSqjTUHHaLU60PxaTjtU.8DSwZZixW', 'My User', 'MyAddress', '0123456798',
         'myuser@gmail.com', SYSDATE(), 1, 1);
 -- data for topics table
-INSERT INTO `english_exam`.`topics` (`TP_ID`, `TP_NAME`) 
-VALUES ('1', 'stress'),
-('2', 'communication');        
+-- INSERT INTO `english_exam`.`topics` (`TP_ID`, `TP_NAME`) 
+-- VALUES ('1', 'stress'),
+-- ('2', 'communication');        
 
 -- data for questions table
-INSERT INTO `english_exam`.`questions` (`QU_ID`, `QU_CONTENT`, `QU_OPTION1`, `QU_OPTION2`, `QU_OPTION3`, `QU_OPTION4`, `QU_ANSWER`, `QU_EXPLAIN`, `QU_TYPE`, `TP_ID`, `LV_ID`) 
-VALUES ('1', ' After the flash flood, all the drains were overflowing _____ storm water.', 'from', 'with', 'for', 'by', '2', 'explain', '1', '1', '1'),
-('2', 'The ideas ______ in this essay are not particularly original.', 'are discussed', 'discussing', 'discussed', 'which are discussing', '3', 'explain', '1', '1', '1');
+-- INSERT INTO `english_exam`.`questions` (`QU_ID`, `QU_CONTENT`, `QU_OPTION1`, `QU_OPTION2`, `QU_OPTION3`, `QU_OPTION4`, `QU_ANSWER`, `QU_EXPLAIN`, `QU_TYPE`, `TP_ID`, `LV_ID`) 
+-- VALUES ('1', ' After the flash flood, all the drains were overflowing _____ storm water.', 'from', 'with', 'for', 'by', '2', 'explain', '1', '1', '1'),
+-- ('2', 'The ideas ______ in this essay are not particularly original.', 'are discussed', 'discussing', 'discussed', 'which are discussing', '3', 'explain', '1', '1', '1');
 
 
 commit;
